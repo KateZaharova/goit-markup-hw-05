@@ -23,6 +23,7 @@ body{
 --modal-btn-border:#E7E9FC;
 --modal-btn-bcg:#F4F4FD;
 --gradient: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7));
+--timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 p,
@@ -130,9 +131,7 @@ img{
     letter-spacing: 0.02em;
 
     color: var(--primary-color); 
-    transition-property:color; 
-    transition-duration:250ms;  
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 250ms var(--timing-function);
 }
 
 .menu-link:hover,
@@ -263,9 +262,7 @@ img{
     color:#FFFFFF;
     background-color:var(--secondary-color);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    transition-property: background-color;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 250ms var(--timing-function);
 }
 
 .hero-btn:hover,
@@ -435,9 +432,7 @@ color: var(--third-color);
 
     background-color: var(--secondary-color);
     fill:#F4F4FD;
-    transition-property: background-color;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 250ms var(--timing-function);
 }
 
 .team-social-link:hover,
@@ -494,7 +489,7 @@ color: var(--third-color);
     fill:#8E8F99;
     transition-property: fill, border;
     transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: var(--timing-function);
 }
 
 .customers-link:hover .customers-logo,
@@ -522,10 +517,8 @@ color: var(--third-color);
     letter-spacing: 0.04em;
     
     color: var(--secondary-color);
-    background-color: var(--modal-btn-bcg); 
-    transition-property: color, background-color, box-shadow;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: var(--modal-btn-bcg);
+    transition: color 250ms var(--timing-function), background-color 250ms var(--timing-function), box-shadow 250ms var(--timing-function); 
 }
 
 
@@ -563,16 +556,51 @@ color: var(--third-color);
     flex-basis: calc((100%-2*24px)/3);
 }
 
+.projects-link-wrapper{
+    position:relative;
+    overflow: hidden;
+}
+
+.overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width:100%;
+    height: 100%;
+    padding-top:40px;
+    padding-right:32px;
+    padding-left: 32px;
+    padding-bottom: 164px;
+   
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    overflow: auto;
+   
+    color: #F4F4FD;
+    background-color: var(--secondary-color);
+    transform: translate(0, 100%);
+    transition: transform 250ms var(--timing-function);
+}
+
 .projects-item {
     border: 1px solid var(--modal-btn-border);
-    transition-property: box-shadow;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 250ms var(--timing-function);
+}
+
+.projects-link:hover .overlay,
+.projects-link:focus .overlay{
+    transform: translate(0, 0);
 }
 
 .projects-item:hover,
 .projects-item:focus{
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+    
 }
 
 .projects-item-wrapper{
@@ -626,7 +654,6 @@ color: var(--third-color);
     display: block;
     align-items: center;
     justify-content: flex-start;
-    vertical-align: middle;
 }
 
 .footer-text{
@@ -705,9 +732,7 @@ color: var(--third-color);
     background-position: center;
 
     background-color: rgba(255,255,255, 0.1);
-    transition-property: background-color;
-    transition-duration: 2500ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 250ms var(--timing-function);
     }
  
 .icon-bottom{
@@ -718,4 +743,39 @@ color: var(--third-color);
 .icon-bottom-link:hover, 
 .icon-bottom-link:focus{
     background-color: #31D0AA;
+}
+
+/*---------------MIODAL WINDOW----------*/
+
+.backdrop{
+    position: fixed;
+    z-index: 100;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: rgba(46, 47, 66, 0.4);
+}
+
+.modal{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width: 408px;
+    height: 576px;
+    background: #FCFCFC;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding:24px;
+}
+
+.modal-close-btn{
+    position: absolute;
+    /*width: 24px;
+    height: 24px;*/
+    display:block;
+    justify-content: flex-end;
+    border-radius: 50%;
+
 }
